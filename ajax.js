@@ -6,6 +6,10 @@ var selectorCount = document.body.querySelector('#step7');
 var count = document.body.querySelector('.count');
 var time = document.body.querySelector('.time')
 var selectorTime = document.body.querySelector('#step8')
+var markup = document.body.querySelector('.markup')
+var selectorMarkup = document.body.querySelector('#step9')
+
+
 
 root.addEventListener("click", function(){
   axios({
@@ -58,7 +62,7 @@ time.addEventListener("click", function(){
   responseType: 'text',
 }).then(function(response){
   console.log(response.data);
-  var timeClick = document.createElement('p');
+  var timeClick = document.createElement('ul');
   timeClick.innerHTML = response.data;
   selectorTime.appendChild(timeClick);
 }).catch(function(error){
@@ -66,6 +70,21 @@ time.addEventListener("click", function(){
   var clickError = document.createElement('p');
   clickError.innerHTML = "Error could not find clicked amount";
   selectorTime.appendChild(clickError);
+
+})
+});
+
+markup.addEventListener("click",function(){
+  axios({
+  url: 'http://intro-ajax-api.herokuapp.com/a_car',
+  method: 'get',
+  responseType: 'html',
+}).then(function(response){
+  console.log(response.data);
+  var markupClick = document.createElement('ul');
+  markupClick.id = 'car';
+  markupClick.innerHTML = response.data;
+  selectorMarkup.appendChild(markupClick);
 
 })
 });
